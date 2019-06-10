@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ advert.title }} - {{ parent() }} {% endblock %}
+
+
+{% block body %}
+
+<div class='text-center mt-5'>
+    <h1> {{ advert.title }} </h1>
+    <p> {{ advert.place }}  </p>
+    <p> postée le  {{advert.date | date('d/m/Y') }} à {{advert.date | date('h:i') }} par {{advert.owner.username}}  </p>
+
+    <div>
+        <img class='illustration align-self-center' src="/img/{{advert.photo}}" /> 
+    </div>
+
+    <p class='mt-4 border border-primary rounded'>
+        {{ advert.description }}    
+    </p>
+    <p class='font-weight-bold'> Prix : {{ advert.price }} € </p>
+    <p> Contact : {{advert.owner.email}} </p>
+<div>
+
+{% endblock %}

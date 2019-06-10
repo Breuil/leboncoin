@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+        {% block title %}Le Bon Coin{% endblock %}
+        </title>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+
+    <body>
+        {% include "header.html.twig" %}
+
+        {% block body %}{% endblock %}
+
+        {% block javascripts %}{% endblock %}
+
+    </body>
+</html>

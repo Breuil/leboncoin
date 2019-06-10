@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces - {{ parent() }} {% endblock %}
+
+
+
+{% block body %}
+
+
+{% if adverts %}
+
+<div>
+    <button class='btn btn-primary'> <a href='{{ path( 'ad_list', {sort : 'price', search : search} ) }}'> Trier par prix </a> </button> 
+    <button class='btn btn-primary'> <a href='{{ path( 'ad_list', {sort : 'date', search : search} ) }}'> Trier par date </a> </button> 
+    <button class='btn btn-primary'> <a href='{{ path( 'ad_list', {sort : 'title', search : search} ) }}'> Trier par nom </a> </button> 
+</div>
+
+<div class='container-fluid'>
+{% for advert in adverts %}
+<div class='text-center mt-5'>
+    <h1> {{ advert.title }} </h1>
+    <p> {{ advert.place }}  </p>
+    <p> {{ advert.category.name }} </p>
+    <p> postée le  {{advert.date | date('d/m/Y') }} à {{advert.date | date('h:i') }} par {{advert.owner.username}}  </p>
+
+    <div>
+        <img class='illustration align-self-center img-fluid' src="/img/{{advert.photo}}" alt="{{advert.title}}" />    
+    </div>
+
+    <p class='mt-4'>
+        {{ advert.price }} €
+    </p>
+    <div>
+        <button class='btn btn-success mb-5'> <a href="{{path('ad_show', {id : advert.id})}}"> Show </a> </button>
+    </div>
+    <hr>
+{% endfor %}
+</div>
+
+{% else %}
+    
+<div class='alert alert-warning text-center'>
+    Nous sommes désolés, aucun résultat n'a été trouvé. Une recherche moins précise aura plus de chance d'obtenir des résultats.
+</div>
+
+{% endif %}
+
+
+{% endblock %}
+
